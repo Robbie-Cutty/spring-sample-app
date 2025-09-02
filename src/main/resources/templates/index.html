@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Title</title>
+</head>
+<body>
+    <h1>This is the new HTML file created by <b>Springboot</b></h1>
+    <a href="register">
+        <button>Register</button>
+    </a>
+
+    <a href="login">
+        <button>Login</button>
+    </a>
+
+</body>
+</html>
+<style>
+    /* ---------- Base ---------- */
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: system-ui, sans-serif;
+        background: linear-gradient(135deg, #3b82f6, #9333ea);
+        color: white;
+        text-align: center;
+    }
+
+    /* ---------- Heading ---------- */
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        max-width: 600px;
+        line-height: 1.4;
+    }
+
+    /* ---------- Buttons ---------- */
+    a {
+        text-decoration: none;
+        margin: 10px;
+    }
+
+    a button {
+        padding: 12px 24px;
+        border-radius: 8px;
+        border: none;
+        background: white;
+        color: #1e3a8a;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    a button:hover {
+        background: #f1f5f9;
+        transform: translateY(-2px);
+    }
+
+    a button:active {
+        transform: translateY(0);
+    }
+</style>

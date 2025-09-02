@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h2>Login</h2>
+
+<!-- Show message if present -->
+<p th:if="${session.msg}" th:text="${session.msg}" style="color:red;"></p>
+
+<form th:action="@{/login}" method="post">
+    <div>
+        <label>Email:</label>
+        <input type="email" name="email" required/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password" required/>
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+
+<p>Don’t have an account? <a th:href="@{/register}">Register here</a></p>
+
+<script>
+    window.onload = function () {
+        const p = new URLSearchParams(location.search);
+        if (p.has("error")) alert("Invalid email or password.");
+        if (p.has("neededLogin")) alert("Please log in first.");
+        if (p.has("logout")) alert("You have logged out.");
+        if (p.has("registered")) alert("Registration successful, please log in.");
+    }
+</script>
+</body>
+</html>
