@@ -11,17 +11,21 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotBlank
     @Column(nullable = false, length = 100)
     private String name;
+
     @NotBlank
     @Email
     @Column(nullable = false, length = 150, unique = true)
     private String email;
+
     @NotBlank
     @Column(nullable = false, length = 150)
     @JsonIgnore
     private String password;
+
     // Getters and setters
     public long getId(){
         return id;

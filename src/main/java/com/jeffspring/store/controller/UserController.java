@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 @Controller
 public class UserController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserService userService, PasswordEncoder passwordEncoder){
+    public UserController(UserService userService,
+                          PasswordEncoder passwordEncoder){
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -49,7 +49,7 @@ public class UserController {
             session.setAttribute("msg","Please log in first");
             return "redirect:/login";
         }
-        return "dashboard";
+        return "tasks";
     }
 
     @GetMapping("/logout")
@@ -67,7 +67,7 @@ public class UserController {
         if(user != null && passwordEncoder.matches(password,user.getPassword())){
             session.setAttribute("user",user);
             session.setAttribute("isLoggedIn",true);
-            return "redirect:/dashboard";
+            return "redirect:/tasks";
         } else{
             session.setAttribute("msg","Invalid credentials, please try again later");
             return "redirect:/login";
@@ -75,7 +75,8 @@ public class UserController {
     }
 
     @PostMapping("/createuser")
-    public String createUser(@ModelAttribute("user") User user, HttpSession session){
+    public String createUser(@ModelAttribute("user") User user,
+                             HttpSession session){
         String nor = user.getEmail().trim().toLowerCase();
         if(user.getEmail() == null || user.getEmail().isEmpty()){
             session.setAttribute("msg","Please fill in email");

@@ -42,8 +42,9 @@
     </div>
 
     <script>
-        // Clear message after 5 seconds
+        // Clear message after 5 seconds and reset forms
         window.onload = function() {
+            // Clear message after 5 seconds
             const messageAlert = document.getElementById('messageAlert');
             if (messageAlert) {
                 setTimeout(function() {
@@ -53,6 +54,9 @@
                     }, 300);
                 }, 5000);
             }
+            
+            // Reset all forms
+            document.querySelectorAll("form").forEach(form => form.reset());
         };
     </script>
 </body>
@@ -213,6 +217,18 @@
         font-size: 14px;
         font-weight: 500;
         transition: opacity 0.3s ease;
+    }
+
+    .alert-error {
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #dc2626;
+    }
+
+    .alert-success {
+        background-color: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        color: #16a34a;
     }
 
 
