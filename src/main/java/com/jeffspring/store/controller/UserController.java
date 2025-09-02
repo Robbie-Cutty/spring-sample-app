@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class HomeController {
+public class UserController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public HomeController(UserService userService, PasswordEncoder passwordEncoder){
+    public UserController(UserService userService, PasswordEncoder passwordEncoder){
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -30,7 +30,7 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login(HttpSession session){
+    public String login(){
         return "login";
     }
 

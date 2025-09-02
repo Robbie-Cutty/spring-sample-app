@@ -1,73 +1,113 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main Title</title>
+    <title>Home</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <style>
+        /* ---------- Base ---------- */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #3b82f6, #9333ea);
+            color: white;
+        }
+
+        /* ---------- Card ---------- */
+        .home-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---------- Heading ---------- */
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        p.subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* ---------- Buttons ---------- */
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            background: white;
+            color: #1e3a8a;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #f1f5f9;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .btn:active {
+            transform: translateY(0) scale(1);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 480px) {
+            .home-card {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            p.subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>this is the new HTML file created by <b>Springboot</b></h1>
-    <a th:href="@{/register}">
-        <button>Register</button>
-    </a>
+<div class="home-card">
+    <h1>Welcome to the <b>Spring Boot Store</b></h1>
+    <p class="subtitle">Please register or log in to continue</p>
 
-    <a th:href="@{/login}">
-        <button>Login</button>
-    </a>
-
+    <div class="actions">
+        <a th:href="@{/register}" class="btn">Register</a>
+        <a th:href="@{/login}" class="btn">Login</a>
+    </div>
+</div>
 </body>
 </html>
-<style>
-    /* ---------- Base ---------- */
-    * {
-        box-sizing: border-box;
-    }
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        font-family: system-ui, sans-serif;
-        background: linear-gradient(135deg, #3b82f6, #9333ea);
-        color: white;
-        text-align: center;
-    }
-
-    /* ---------- Heading ---------- */
-    h1 {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 30px;
-        max-width: 600px;
-        line-height: 1.4;
-    }
-
-    /* ---------- Buttons ---------- */
-    a {
-        text-decoration: none;
-        margin: 10px;
-    }
-
-    a button {
-        padding: 12px 24px;
-        border-radius: 8px;
-        border: none;
-        background: white;
-        color: #1e3a8a;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    a button:hover {
-        background: #f1f5f9;
-        transform: translateY(-2px);
-    }
-
-    a button:active {
-        transform: translateY(0);
-    }
-</style>
