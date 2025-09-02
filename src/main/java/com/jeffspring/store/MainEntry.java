@@ -1,3 +1,5 @@
+package com.jeffspring.store;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -5,5 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MainEntry {
     public static void main(String[] args) {
         SpringApplication.run(MainEntry.class, args);
+
     }
 }

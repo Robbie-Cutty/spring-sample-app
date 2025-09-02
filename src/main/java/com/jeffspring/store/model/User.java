@@ -1,10 +1,9 @@
-package com.jeffspring.store.models;
+package com.jeffspring.store.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-
 
 @Entity
 @Table(name = "users")

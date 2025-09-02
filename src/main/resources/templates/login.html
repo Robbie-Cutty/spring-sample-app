@@ -2,38 +2,243 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login - Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<h2>Login</h2>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to your account</p>
+            </div>
+            
+            <div class="card-body">
+                <!-- Show message if present -->
+                <div th:if="${session.msg}" class="alert" 
+                     th:classappend="${session.msg.contains('Invalid') or session.msg.contains('Failed') or session.msg.contains('Please fill') or session.msg.contains('already exists')} ? 'alert-error' : 'alert-success'" 
+                     th:text="${session.msg}" id="messageAlert"></div>
 
-<!-- Show message if present -->
-<p th:if="${session.msg}" th:text="${session.msg}" style="color:red;"></p>
+                <form th:action="@{/login}" method="post" class="form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required placeholder="Enter your password"/>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
 
-<form th:action="@{/login}" method="post">
-    <div>
-        <label>Email:</label>
-        <input type="email" name="email" required/>
+                <div class="card-footer">
+                    <p>Don't have an account? <a th:href="@{/register}" class="link">Create one here</a></p>
+                    <p><a th:href="@{/}" class="link">← Back to Home</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password" required/>
-    </div>
-    <div>
-        <button type="submit">Login</button>
-    </div>
-</form>
 
-<p>Don’t have an account? <a th:href="@{/register}">Register here</a></p>
-
-<script>
-    window.onload = function () {
-        const p = new URLSearchParams(location.search);
-        if (p.has("error")) alert("Invalid email or password.");
-        if (p.has("neededLogin")) alert("Please log in first.");
-        if (p.has("logout")) alert("You have logged out.");
-        if (p.has("registered")) alert("Registration successful, please log in.");
-    }
-</script>
+    <script>
+        // Clear message after 5 seconds
+        window.onload = function() {
+            const messageAlert = document.getElementById('messageAlert');
+            if (messageAlert) {
+                setTimeout(function() {
+                    messageAlert.style.opacity = '0';
+                    setTimeout(function() {
+                        messageAlert.remove();
+                    }, 300);
+                }, 5000);
+            }
+        };
+    </script>
 </body>
 </html>
+
+<style>
+    /* Reset and base styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 30px 30px;
+        text-align: center;
+    }
+
+    .card-header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .card-header p {
+        opacity: 0.9;
+        font-size: 16px;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #374151;
+        font-size: 14px;
+    }
+
+    .form-group input {
+        padding: 12px 16px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        background: #f9fafb;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .btn {
+        padding: 14px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .card-footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .card-footer p {
+        margin-bottom: 8px;
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+    .link {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+    .link:hover {
+        color: #764ba2;
+        text-decoration: underline;
+    }
+
+    .alert {
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: opacity 0.3s ease;
+    }
+
+    .alert-error {
+        background: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
+    }
+
+    .alert-success {
+        background: #f0fdf4;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
+
+    /* Responsive design */
+    @media (max-width: 480px) {
+        .card-header {
+            padding: 30px 20px 20px;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-header h1 {
+            font-size: 24px;
+        }
+    }
+</style>

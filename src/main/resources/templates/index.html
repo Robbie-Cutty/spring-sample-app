@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Main Title</title>
 </head>
 <body>
-    <h1>This is the new HTML file created by <b>Springboot</b></h1>
-    <a href="register">
+    <h1>this is the new HTML file created by <b>Springboot</b></h1>
+    <a th:href="@{/register}">
         <button>Register</button>
     </a>
 
-    <a href="login">
+    <a th:href="@{/login}">
         <button>Login</button>
     </a>
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <div class="welcome-section">
+                <h1>Welcome to your Dashboard</h1>
+                <p class="user-info">
+                    Logged in as:
+                    <span class="email" th:text="${session.user != null} ? ${session.user.email} : '—'"></span>
+                </p>
+            </div>
+
+            <div class="user-actions">
+                <!-- Your controller uses GET /logout -->
+                <form th:action="@{/logout}" method="get" class="logout-form">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="stats-grid">
+                <!-- Example stat cards -->
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <h3>Orders</h3>
+                        <p>12 this month</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">👤</div>
+                    <div class="stat-info">
+                        <h3>Profile</h3>
+                        <p>Updated recently</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <a href="#" class="btn btn-primary">New Order</a>
+                    <a href="#" class="btn btn-secondary">Manage Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
